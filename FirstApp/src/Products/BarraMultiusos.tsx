@@ -75,9 +75,9 @@ export function BarraMultiusos(){
 
     return(
         <div className={`
-        bg-gray-100 transition-all duration-300 ease-in-out
+        bg-gray-100 transition-all duration-300 ease-in-out 
         ${isMenuExpanded 
-            ? 'top-16  fixed inset-0 z-50 w-full' 
+            ? 'top-16  fixed inset-0 z-50 w-full pt-10' 
             : 'w-1/5'
         }
         `}>

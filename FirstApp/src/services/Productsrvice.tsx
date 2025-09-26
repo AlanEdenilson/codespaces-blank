@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { responseP } from "../helpers/Type";
+import type { dtoProduct, responseP } from "../helpers/Type";
 
 export class Productsrvice{
     constructor(){
@@ -10,6 +10,17 @@ export class Productsrvice{
 
         try {
             const result = await axios.get(`https://crispy-yodel-6q647445xw73549-3000.app.github.dev/api/products?page=${page}&pageSize=5`)
+            return result.data
+        } catch (error) {
+            throw error;
+        
+        }
+    }
+
+    async save(data:dtoProduct):Promise<responseP>{
+
+        try {
+            const result = await axios.post(`https://crispy-yodel-6q647445xw73549-3000.app.github.dev/api/products`,data)
             return result.data
         } catch (error) {
             throw error;

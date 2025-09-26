@@ -25,3 +25,10 @@ export interface TableProductos2{
     cambiarP:(num: number) => void;
 
 }
+
+export interface dtoProduct{
+    name:string
+    supplier:string
+    price:number
+    quantity:number
+}

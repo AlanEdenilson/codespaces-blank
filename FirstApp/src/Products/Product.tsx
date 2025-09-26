@@ -5,6 +5,7 @@ import type { TableProductos } from "../helpers/Type";
 import { TableP } from "./TableP";
 import { BarraMultiusos } from "./BarraMultiusos";
 import { BarraContext, type UserContextType } from "../context/BaraContext";
+import { DtaContext } from "../context/DtaContext";
 
 
 export function Product(){
@@ -27,13 +28,11 @@ export function Product(){
 
 
     useEffect(() => {
-         console.log('consumiendo use efect')
 
         async function Productos() {
             try {
                 const request = new  Productsrvice();
                 const repsonse = await request.getAll(page);
-                console.log('consumiendo api a')
                 setProductos({products:repsonse.result,total:repsonse.total});
             } catch (error) {
                 console.log(error)
@@ -46,6 +45,7 @@ export function Product(){
 
     },[page]);
 
+
     function cambiarPagina(num:number){
         setPage(num)
 
@@ -54,8 +54,8 @@ export function Product(){
 
 
     return(
-
-        <BarraContext.Provider value={value}>
+       
+            <BarraContext.Provider value={value}>
             <div className="flex h-screen pt-1">
 
             
@@ -70,6 +70,10 @@ export function Product(){
         </div>
 
         </BarraContext.Provider>
+
+        
+
+        
         
 
     )
