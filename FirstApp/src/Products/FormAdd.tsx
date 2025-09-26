@@ -1,7 +1,7 @@
 export function FormAdd(){
     return(
         <div className="p-4 mx-auto max-w-xl bg-white">
-        <h2 className="text-3xl text-slate-900 font-bold">Contact us</h2>
+        <h2 className="text-3xl text-slate-900 font-bold">Crear Producto</h2>
         <form className="mt-8 space-y-5">
           <div>
             <label className='text-sm text-slate-900 font-medium mb-2 block'>Name</label>
@@ -9,18 +9,18 @@ export function FormAdd(){
               className="w-full py-2.5 px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm outline-0 transition-all" />
           </div>
           <div>
-            <label className='text-sm text-slate-900 font-medium mb-2 block'>Email</label>
-            <input type='email' placeholder='Enter Email'
+            <label className='text-sm text-slate-900 font-medium mb-2 block'>Supplier</label>
+            <input type='email' placeholder='Enter Supplier'
               className="w-full py-2.5 px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm outline-0 transition-all" />
           </div>
           <div>
-            <label className='text-sm text-slate-900 font-medium mb-2 block'>Subject</label>
-            <input type='text' placeholder='Enter Subject'
+            <label className='text-sm text-slate-900 font-medium mb-2 block'>Price</label>
+            <input type='text' placeholder='Enter Price'
               className="w-full py-2.5 px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm outline-0 transition-all" />
           </div>
           <div>
-            <label className='text-sm text-slate-900 font-medium mb-2 block'>Message</label>
-            <textarea placeholder='Enter Message' 
+            <label className='text-sm text-slate-900 font-medium mb-2 block'>Quantity</label>
+            <textarea placeholder='Enter Quantity' 
               className="w-full px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm pt-3 outline-0 transition-all"></textarea>
           </div>
           <button type='button'

@@ -58,7 +58,7 @@ export function BarraMultiusos(){
 
             const btnReverse=<button
                 onClick={rerender}
-                className="fixed  w-15 h-10 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition duration-200 bottom-20 left-5 "
+                className="fixed  w-15 h-10 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition duration-200 bottom-3 ml-20 "
                 >
                 <FlechaAtras size={20} />
                 </button>
@@ -85,8 +85,8 @@ export function BarraMultiusos(){
         {componente}
 
 
-        {(barra) < 'menu'? extendBtn  : "Apple"}
-        {(barra) < 'menu'? btnReverse  : "Apple"}
+        {(barra) < 'menu'? extendBtn  : ""}
+        {(barra) < 'menu'? btnReverse  : ""}
 
         
             
