@@ -1,12 +1,15 @@
+import { useContext } from "react";
+import { BarraContext } from "./context/BaraContext";
 
-interface MyComponentProps {
-  onButtonClick: (estado:string) => void;
-}
 
-export const ProductMenu: React.FC<MyComponentProps> = ({ onButtonClick }) => {
+export const ProductMenu= () => {
+
+  const context  =useContext(BarraContext)
+      const { barra, setBarra } = context;
+  
 
   return (
-    <div className="w-1/5 h-screen bg-gray-100 text-white p-4">
+    <div>
       <ul className="space-y-1">
         <li>
           <a href="#" className="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-gray-700">
@@ -50,7 +53,7 @@ export const ProductMenu: React.FC<MyComponentProps> = ({ onButtonClick }) => {
               />
             </svg>
 
-            <span className="text-sm font-medium" onClick={()=>{onButtonClick('Add')}}> Agregar </span>
+            <span className="text-sm font-medium" onClick={()=>{setBarra('add')}} > Agregar </span>
           </a>
         </li>
       </ul>

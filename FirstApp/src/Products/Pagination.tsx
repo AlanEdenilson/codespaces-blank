@@ -6,7 +6,7 @@ export interface p{
 }
 
 export function Pagination({page,cambiarP}:p) {
-
+     
     const count = useRef(0);
     
             useEffect(() => {

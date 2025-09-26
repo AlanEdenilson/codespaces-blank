@@ -1,14 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 
-
 import { Productsrvice } from "../services/Productsrvice";
 import type { TableProductos } from "../helpers/Type";
 import { TableP } from "./TableP";
+import { BarraMultiusos } from "./BarraMultiusos";
+import { BarraContext, type UserContextType } from "../context/BaraContext";
 
 
 export function Product(){
+    
     const [productos,setProductos] = useState<TableProductos>({products:[],total:0});
     const[page,setPage]=useState(1)
+    const [barra,setBarra]=useState('menu')
+
+    const value: UserContextType = {
+    barra,
+    setBarra,
+  };
 
      const count = useRef(0);
 
@@ -19,17 +27,20 @@ export function Product(){
 
 
     useEffect(() => {
+         console.log('consumiendo use efect')
+
         async function Productos() {
             try {
                 const request = new  Productsrvice();
                 const repsonse = await request.getAll(page);
+                console.log('consumiendo api a')
                 setProductos({products:repsonse.result,total:repsonse.total});
             } catch (error) {
                 console.log(error)
                 
             }
         }
-        console.log('consumiendo api')
+       
 
         Productos();
 
@@ -43,13 +54,23 @@ export function Product(){
 
 
     return(
-        <div>
-            <div className="mt-10">
+
+        <BarraContext.Provider value={value}>
+            <div className="flex h-screen pt-1">
+
+            
+                <BarraMultiusos></BarraMultiusos>
+            
+
+            <div className="w-4/5 mt-10">
                 <TableP  products={productos.products} total={productos.total} cambiarP={cambiarPagina}/>
                
             </div> 
 
         </div>
+
+        </BarraContext.Provider>
+        
 
     )
 }
