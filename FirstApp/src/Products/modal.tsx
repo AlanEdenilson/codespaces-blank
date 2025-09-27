@@ -1,5 +1,7 @@
 import { createPortal } from "react-dom";
 import { Productsrvice } from "../services/Productsrvice";
+import { useContext } from "react";
+import { BorrarContext } from "../context/BorrarContext";
 
 
 interface parametros{
@@ -11,16 +13,20 @@ interface parametros{
 
 
 export function Modal({id,isOpen, onClose, children }:parametros){
+
+    const context  =useContext(BorrarContext)
+    const {eliminar,setEliminar } = context;
     if (!isOpen) return null;
 
     const services= new Productsrvice()
 
-    async function eliminar ()  {
+    async function delet ()  {
       
         try {
           const response = await services.delet(id)
           console.log(response)
           onClose()
+          setEliminar(true)
         } catch (error) {
           console.log(error)
           
@@ -59,7 +65,7 @@ export function Modal({id,isOpen, onClose, children }:parametros){
                         </div>
 
                         <div className="flex flex-col space-y-3">
-                            <button type="button" onClick={eliminar}
+                            <button type="button" onClick={delet}
                                 className="px-4 py-2 rounded-md cursor-pointer text-white text-sm font-medium tracking-wide bg-red-500 hover:bg-red-600 active:bg-red-500">Delete</button>
                             <button id="closeButton"  onClick={onClose}
                                 className="px-4 py-2 rounded-md cursor-pointer text-slate-900 text-sm font-medium tracking-wide bg-gray-200 hover:bg-gray-300 active:bg-gray-200">Cancel</button>

@@ -6,6 +6,7 @@ import { TableP } from "./TableP";
 import { BarraMultiusos } from "./BarraMultiusos";
 import { BarraContext, type UserContextType } from "../context/BaraContext";
 import { DtaContext } from "../context/DtaContext";
+import { BorrarContext, type ContextType } from "../context/BorrarContext";
 
 
 export function Product() {
@@ -14,6 +15,7 @@ export function Product() {
     const [page, setPage] = useState(1)
     const [barra, setBarra] = useState('menu')
     const [update, setUpdate] = useState<dtoProductu | 0>(0)
+    const [eliminar, setEliminar] = useState(false)
     
 
 
@@ -41,7 +43,7 @@ export function Product() {
 
         Productos();
 
-    }, [page,update]);
+    }, [page,update,eliminar]);
 
 
     function cambiarPagina(num: number) {
@@ -63,11 +65,14 @@ export function Product() {
 
                     <BarraMultiusos></BarraMultiusos>
 
-
-                    <div className="w-4/5 mt-10">
+                     <BorrarContext.Provider value={{eliminar,setEliminar}}>
+                         <div className="w-4/5 mt-10">
                         <TableP products={productos.products} total={productos.total} cambiarP={cambiarPagina} />
 
                     </div>
+
+                     </BorrarContext.Provider>
+                   
                     
 
                 </div>
