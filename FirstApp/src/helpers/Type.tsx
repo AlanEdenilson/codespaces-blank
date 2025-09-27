@@ -32,3 +32,11 @@ export interface dtoProduct{
     price:number
     quantity:number
 }
+
+export interface dtoProductu{
+    id:number
+    name:string
+    supplier:string
+    price:string
+    quantity:number
+}

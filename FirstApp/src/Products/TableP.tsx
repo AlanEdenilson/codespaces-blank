@@ -1,10 +1,18 @@
 
 import { Pagination } from "./Pagination";
-import type {  TableProductos2 } from "../helpers/Type";
-import { useEffect, useRef } from "react";
+import type {  dtoProductu, TableProductos2 } from "../helpers/Type";
+import { useContext, useEffect, useRef } from "react";
+import { DtaContext } from "../context/DtaContext";
+import { BarraContext } from "../context/BaraContext";
 
 
 export function TableP({ products, total,cambiarP }: TableProductos2) {
+
+     const context  =useContext(DtaContext)
+        const {update,setUpdate } = context;
+
+        const context2  =useContext(BarraContext)
+            const {barra, setBarra } = context2;
    
 
     const count = useRef(0);
@@ -13,6 +21,12 @@ export function TableP({ products, total,cambiarP }: TableProductos2) {
                 count.current = count.current + 1;
                 console.log('pagina de table render:' ,count.current)
             });
+
+    function actualizar(data:dtoProductu){
+        setUpdate(data)
+        setBarra('edit')
+        console.log('editando')
+    }
     
     return (
         <>
@@ -61,7 +75,7 @@ export function TableP({ products, total,cambiarP }: TableProductos2) {
                                     </td>
                                     <td className="px-6 py-4">
                                         <div className="flex items-center">
-                                            <button className="mr-3 cursor-pointer" title="Edit">
+                                            <button onClick={()=>{actualizar(item)}} className="mr-3 cursor-pointer" title="Edit">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 fill-blue-500 hover:fill-blue-700"
                                                 viewBox="0 0 348.882 348.882">
                                                 <path

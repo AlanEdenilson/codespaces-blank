@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { dtoProduct, responseP } from "../helpers/Type";
+import type { dtoProduct, dtoProductu, responseP } from "../helpers/Type";
 
 interface response{
     ok:boolean
@@ -27,6 +27,23 @@ export class Productsrvice{
 
         try {
             const result = await axios.post(`https://crispy-yodel-6q647445xw73549-3000.app.github.dev/api/products`,data)
+            return result.data
+        } catch (error) {
+            throw error;
+        
+        }
+    }
+
+     async update(data:dtoProductu):Promise<response>{
+        const update  = {
+            name:data.name,
+            supplier:data.supplier,
+            price:parseFloat(data.price),
+            quantity:data.quantity
+        }
+
+        try {
+            const result = await axios.patch(`https://crispy-yodel-6q647445xw73549-3000.app.github.dev/api/products/${data.id}`,update)
             return result.data
         } catch (error) {
             throw error;

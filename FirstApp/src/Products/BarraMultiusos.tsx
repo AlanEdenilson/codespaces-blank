@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { ProductMenu } from "../ProductMenu";
 import { BarraContext } from "../context/BaraContext";
 import { FormAdd } from "./FormAdd";
+import { FormEdit } from "./FormEdit";
 
 
 const FlechaAtras = ({ size = 20 }) => (
@@ -69,6 +70,10 @@ export function BarraMultiusos(){
 
         if(barra=='add'){
             componente = <FormAdd></FormAdd>
+        }
+
+         if(barra=='edit'){
+            componente = <FormEdit></FormEdit>
         }
 
 

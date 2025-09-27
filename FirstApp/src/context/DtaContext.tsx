@@ -1,9 +1,9 @@
 import { createContext } from "react";
-import type { dtoProduct } from "../helpers/Type";
+import type { dtoProductu } from "../helpers/Type";
 
 export interface ContextType {
-  producto: dtoProduct;
-  setproducto: React.Dispatch<React.SetStateAction<string>>;
+  update: dtoProductu|0;
+  setUpdate: React.Dispatch<React.SetStateAction<dtoProductu|0>>;
 }
 
 export const DtaContext = createContext<ContextType | undefined >(undefined);
