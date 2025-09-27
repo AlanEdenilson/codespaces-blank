@@ -68,11 +68,15 @@ export function BarraMultiusos(){
 
     let componente = <ProductMenu></ProductMenu>;
 
+    let color='bg-gray-100'
+
         if(barra=='add'){
             componente = <FormAdd></FormAdd>
+            color='bg-white'
         }
 
          if(barra=='edit'){
+            color='bg-white'
             componente = <FormEdit></FormEdit>
         }
 
@@ -80,10 +84,10 @@ export function BarraMultiusos(){
 
     return(
         <div className={`
-        bg-gray-100 transition-all duration-300 ease-in-out 
+        ${color} transition-all duration-300 ease-in-out pt-20
         ${isMenuExpanded 
-            ? 'top-16  fixed inset-0 z-50 w-full pt-10' 
-            : 'w-1/5'
+            ? 'top-16 fixed inset-0 z-50 w-full pt-5 bg-gray-300 ' 
+            : 'w-1/5 mt-1 pt-10'
         }
         `}>
 

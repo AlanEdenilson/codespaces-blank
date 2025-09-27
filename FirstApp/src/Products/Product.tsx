@@ -33,6 +33,7 @@ export function Product() {
             try {
                 const request = new Productsrvice();
                 const repsonse = await request.getAll(page);
+                console.log(repsonse)
                 setProductos({ products: repsonse.result, total: repsonse.total });
             } catch (error) {
                 console.log(error)
@@ -66,7 +67,7 @@ export function Product() {
                     <BarraMultiusos></BarraMultiusos>
 
                      <BorrarContext.Provider value={{eliminar,setEliminar}}>
-                         <div className="w-4/5 mt-10">
+                         <div className="w-4/5 mt-20 pt-10">
                         <TableP products={productos.products} total={productos.total} cambiarP={cambiarPagina} />
 
                     </div>

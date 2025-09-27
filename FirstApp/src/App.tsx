@@ -12,7 +12,11 @@ function App() {
 
   return (
     <BrowserRouter>
-    <PrincipalPage/>
+    <div className='fixed'>
+      <PrincipalPage/>
+
+    </div>
+    
     <Routes>
         
         <Route path="/product" element={<Product />}>

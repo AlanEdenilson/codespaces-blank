@@ -6,6 +6,8 @@ export interface p{
 }
 
 export function Pagination({page,cambiarP}:p) {
+
+    console.log('ultima pagina ',page)
      
     const count = useRef(0);
     
@@ -39,7 +41,7 @@ export function Pagination({page,cambiarP}:p) {
                     }
                 
                     <li>
-                        <span  onClick={ () => {cambiarP(page)}} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</span>
+                        <span  onClick={ () => {cambiarP(items.length)}} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</span>
                     </li>
                 </ul>
             </nav>
