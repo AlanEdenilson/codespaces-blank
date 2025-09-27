@@ -14,6 +14,7 @@ export function Product() {
     const [page, setPage] = useState(1)
     const [barra, setBarra] = useState('menu')
     const [update, setUpdate] = useState<dtoProductu | 0>(0)
+    
 
 
     const count = useRef(0);
@@ -67,6 +68,7 @@ export function Product() {
                         <TableP products={productos.products} total={productos.total} cambiarP={cambiarPagina} />
 
                     </div>
+                    
 
                 </div>
             </DtaContext.Provider>

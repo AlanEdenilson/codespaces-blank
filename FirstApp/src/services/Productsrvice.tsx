@@ -50,4 +50,18 @@ export class Productsrvice{
         
         }
     }
+
+    async delet(id:number):Promise<response>{
+      
+
+        try {
+            const result = await axios.delete(`https://crispy-yodel-6q647445xw73549-3000.app.github.dev/api/products/${id}`)
+            return result.data
+        } catch (error) {
+            throw error;
+        
+        }
+    }
+
+    
 }

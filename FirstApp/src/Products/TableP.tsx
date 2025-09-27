@@ -1,9 +1,11 @@
 
 import { Pagination } from "./Pagination";
 import type {  dtoProductu, TableProductos2 } from "../helpers/Type";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { DtaContext } from "../context/DtaContext";
 import { BarraContext } from "../context/BaraContext";
+import { Modal } from "./modal";
+
 
 
 export function TableP({ products, total,cambiarP }: TableProductos2) {
@@ -13,14 +15,16 @@ export function TableP({ products, total,cambiarP }: TableProductos2) {
 
         const context2  =useContext(BarraContext)
             const {barra, setBarra } = context2;
+
+        const [isOpen, setIsOpen] = useState(false);
    
 
-    const count = useRef(0);
+    const numero = useRef<{message:string,id:number}>({message:'',id:0});
     
-            useEffect(() => {
-                count.current = count.current + 1;
-                console.log('pagina de table render:' ,count.current)
-            });
+        function eliminar(data:{message:string,id:number}){
+             numero.current = {...data,['message']:'estas seguro que quieres borrar'+data.message}
+             setIsOpen(true)
+            };
 
     function actualizar(data:dtoProductu){
         setUpdate(data)
@@ -86,7 +90,7 @@ export function TableP({ products, total,cambiarP }: TableProductos2) {
                                                 data-original="#000000" />
                                             </svg>
                                             </button>
-                                            <button title="Delete" className="cursor-pointer">
+                                            <button onClick={() => eliminar({message:item.name,id:item.id})} title="Delete" className="cursor-pointer">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 fill-red-500 hover:fill-red-700" viewBox="0 0 24 24">
                                                 <path
                                                 d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
@@ -117,6 +121,10 @@ export function TableP({ products, total,cambiarP }: TableProductos2) {
                 <Pagination page={total} cambiarP={cambiarP} />
 
             </div>
+
+            <Modal id={numero.current.id} isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                        {numero.current.message}
+            </Modal>
 
         </>
     )
