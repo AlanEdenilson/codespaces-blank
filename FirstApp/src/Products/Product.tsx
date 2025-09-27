@@ -40,7 +40,7 @@ export function Product() {
 
         Productos();
 
-    }, [page]);
+    }, [page,update]);
 
 
     function cambiarPagina(num: number) {

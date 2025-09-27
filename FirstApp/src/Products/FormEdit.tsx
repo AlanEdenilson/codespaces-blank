@@ -35,6 +35,7 @@ export function FormEdit(){
       console.log(response)
       setResponse({ok:response.ok,message:response.message});
       setIsVisible(true)
+      setUpdate(0);
     } catch (error) {
       console.log(error)
       
