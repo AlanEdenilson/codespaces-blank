@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FormEvent } from "react"
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react"
 import { Productsrvice } from "../services/Productsrvice";
 
 export function FormAdd(){
@@ -6,26 +6,64 @@ export function FormAdd(){
   const services= new Productsrvice()
 
   const [formData,setFormData]=useState({name:'',supplier:'',price:0,quantity:0})
+   const [isVisible, setIsVisible] = useState(false);
+   const [response,setResponse]=useState({ok:true,message:''})
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  let mensaje =
+  <div className="space-y-6 p-4 max-w-screen-xl mx-auto">
+   <div className="bg-red-100 text-red-800 p-4 rounded-lg" role="alert">
+        <span className="font-semibold text-[15px] inline-block mr-4">Error!</span>
+        <span className="block text-sm font-medium sm:inline max-sm:mt-2">{response.message}</span>
+      </div>
+      </div>;
+
    const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     console.log(formData)
     try {
-      console.log(await services.save(formData))
+      const response = await services.save(formData)
+      console.log(response)
+      setResponse({ok:response.ok,message:response.message});
+      setIsVisible(true)
     } catch (error) {
-      console.log('error',error)
+      setResponse({ok:false,message:error});
       
     }
    }
 
+   useEffect(() => {
+    // Si el mensaje es visible, inicia un temporizador
+    if (isVisible) {
+      const timer = setTimeout(() => {
+        setIsVisible(false); // Oculta el mensaje después de 1000 ms (1 segundo)
+      }, 1000);
+
+      // Limpia el temporizador si el componente se desmonta antes de que pase el segundo
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible]); // El efecto se ejecuta cada vez que 'visible' cambia
+
+  if(response.ok){
+    mensaje=<div className="space-y-6 p-4 max-w-screen-xl mx-auto">
+          <div className="bg-green-100 text-green-800 p-4 rounded-lg" role="alert">
+            <span className="font-semibold text-[15px] inline-block mr-4">Success!</span>
+            <span className="block text-sm font-medium sm:inline max-sm:mt-2">{response.message}</span>
+        </div>
+
+      </div>
+  }
+
 
     return(
         <div className="p-4 mx-auto max-w-xl bg-white ">
+
+          
+          
         <h2 className="text-3xl text-slate-900 font-bold">Crear Producto</h2>
         <form onSubmit={handleSubmit} className="mt-8 space-y-5">
           <div>
@@ -64,6 +102,9 @@ export function FormAdd(){
           <button type='submit'
             className="text-white bg-slate-900 font-medium hover:bg-slate-800 tracking-wide text-sm px-4 py-2.5 w-full border-0 outline-0 cursor-pointer">Send message</button>
         </form>
+
+       {isVisible &&  mensaje}
+        
       </div>
     )
 }

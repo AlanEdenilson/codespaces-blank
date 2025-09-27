@@ -1,6 +1,12 @@
 import axios from "axios";
 import type { dtoProduct, responseP } from "../helpers/Type";
 
+interface response{
+    ok:boolean
+    message:string
+    status:number
+}
+
 export class Productsrvice{
     constructor(){
 
@@ -17,7 +23,7 @@ export class Productsrvice{
         }
     }
 
-    async save(data:dtoProduct):Promise<responseP>{
+    async save(data:dtoProduct):Promise<response>{
 
         try {
             const result = await axios.post(`https://crispy-yodel-6q647445xw73549-3000.app.github.dev/api/products`,data)
